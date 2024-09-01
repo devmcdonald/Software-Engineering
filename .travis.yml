@@ -1,8 +1,6 @@
-dist: jammy
 language: python
-matrix:
-  include:
-  - python: 3.9 
+python:
+  - "3.9" 
 install:
   - cd taxiapp
   - python3 -m pip install --upgrade pip
@@ -25,7 +23,7 @@ deploy:
   bucket_name: elasticbeanstalk-us-east-1-761018855731
   on:
     repo: Software-Engineering
-    branch: 
+    branch:
       - master
   cleanup: 'false'
 
