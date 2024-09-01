@@ -119,7 +119,7 @@ s3_client = boto3.client(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1", "taxiapp2.us-east-1.elasticbeanstalk.com", ".vercel.app", '.now.sh']
+ALLOWED_HOSTS = ["127.0.0.1", "taxiapp-dev.us-east-1.elasticbeanstalk.com", ".vercel.app", '.now.sh']
 
 
 # Application definition
