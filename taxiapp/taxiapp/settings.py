@@ -30,7 +30,6 @@ def get_secret(name):
     os.environ[name] = api_key
     return api_key
 
-
 SECRET_KEY = get_secret("SECRET_KEY")
 COGNITO_DOMAIN = get_secret("COGNITO_DOMAIN")
 COGNITO_APP_CLIENT_SECRET = get_secret("COGNITO_APP_CLIENT_SECRET")
