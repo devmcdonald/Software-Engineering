@@ -6,7 +6,10 @@ import botocore.session
 import boto3
 from botocore.exceptions import ClientError
 import json
+from decouple import config 
+from dotenv import load_dotenv
 
+load_dotenv()
 
 def get_secret(name):
     secret_name = "taxiapp_secrets"
@@ -66,7 +69,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # LYFT_API_KEY = env("LYFT_API_KEY")
 
 # # # #############Uncomment for travis deployment##############
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = os.environ.get("SECRET_KEY") if "SECRET_KEY" in os.environ["SECRET_KEY"] else config("SECRET_KEY")
 COGNITO_DOMAIN = os.environ.get("COGNITO_DOMAIN")
 COGNITO_APP_CLIENT_SECRET = os.environ.get("COGNITO_APP_CLIENT_SECRET")
 COGNITO_USER_POOL_ID = os.environ.get("COGNITO_USER_POOL_ID")
@@ -87,7 +90,7 @@ STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1", "taxiapp2.us-east-1.elasticbeanstalk.com", "https://taxiapp-eight.vercel.app", "taxiapp-1uj7cfj3i-devin-mcdonalds-projects.vercel.app"]
+ALLOWED_HOSTS = ["127.0.0.1", "taxiapp2.us-east-1.elasticbeanstalk.com", ".vercel.app"]
 
 
 # Application definition
@@ -141,7 +144,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "taxiapp.wsgi.application"
+WSGI_APPLICATION = "taxiapp.wsgi.app"
 
 
 # Database

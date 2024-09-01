@@ -1,0 +1,30 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "taxiapp/wsgi.py",
+            "use": "@vercel/python",
+            "config":{
+                "maxLambdaSize": "15.9",
+                "runtime": "Python3.9"
+            }
+        },
+        {
+            "src": "build_files.sh",
+            "use": "@vercel/static-build",
+            "config":{
+                "distDir": "staticfiles_build"
+            }
+        }
+    ],
+    "routes":[
+        {
+            "src": "/static/(.*)",
+            "dest": "/static/$1"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "taxiapp/wsgi.py"
+        }
+    ]
+}
