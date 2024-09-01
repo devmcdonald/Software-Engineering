@@ -27,6 +27,5 @@ deploy:
     repo: Software-Engineering
     branch: 
       - master
-      - develop
   cleanup: 'false'
 
