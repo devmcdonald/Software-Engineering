@@ -1,3 +1,4 @@
+pip install --upgrade pip setuptools
 echo "Building project packages..."
 cd taxiapp
 python3 -m pip install -r requirements.txt
