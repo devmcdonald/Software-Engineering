@@ -48,41 +48,25 @@ def get_secret(name):
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# ##########Uncomment for local development, add secrets.env local file###############
-# env = environ.Env()
-# environ.Env.read_env(env_file="secrets.env")
-# SECRET_KEY = env("SECRET_KEY")
-
-
-# # SECURITY WARNING: keep the secret key used in production secret!
-# COGNITO_DOMAIN = env("COGNITO_DOMAIN")
-# COGNITO_APP_CLIENT_SECRET = env("COGNITO_APP_CLIENT_SECRET")
-# COGNITO_USER_POOL_ID = env("COGNITO_USER_POOL_ID")
-# COGNITO_APP_CLIENT_ID = env("COGNITO_APP_CLIENT_ID")
-# COGNITO_AWS_REGION = env("COGNITO_AWS_REGION")
-# GOOGLE_MAPS_API_KEY = env("GOOGLE_MAPS_API_KEY")
-
-# KEEPING THIS?
-# UBER_CLIENT_ID = env("UBER_CLIENT_ID")
-# UBER_CLIENT_SECRET = env("UBER_CLIENT_SECRET")
-# LYFT_API_KEY = env("LYFT_API_KEY")
-
-# # # #############Uncomment for travis deployment##############
 """
-SECRET_KEY = os.environ.get("SECRET_KEY")
-COGNITO_DOMAIN = os.environ.get("COGNITO_DOMAIN")
-COGNITO_APP_CLIENT_SECRET = os.environ.get("COGNITO_APP_CLIENT_SECRET")
-COGNITO_USER_POOL_ID = os.environ.get("COGNITO_USER_POOL_ID")
-COGNITO_APP_CLIENT_ID = os.environ.get("COGNITO_APP_CLIENT_ID")
-COGNITO_AWS_REGION = os.environ.get("COGNITO_AWS_REGION")
-GOOGLE_MAPS_API_KEY = os.environ.get("GOOGLE_MAPS_API_KEY")
+# ########## Uncomment for local development, add vercel.env local file###############
+env = environ.Env()
+environ.Env.read_env(env_file="vercel.env")
+SECRET_KEY = env("SECRET_KEY")
+COGNITO_DOMAIN = env("COGNITO_DOMAIN")
+COGNITO_APP_CLIENT_SECRET = env("COGNITO_APP_CLIENT_SECRET")
+COGNITO_USER_POOL_ID = env("COGNITO_USER_POOL_ID")
+COGNITO_APP_CLIENT_ID = env("COGNITO_APP_CLIENT_ID")
+COGNITO_AWS_REGION = env("COGNITO_AWS_REGION")
+GOOGLE_MAPS_API_KEY = env("GOOGLE_MAPS_API_KEY")
 COGNITO_PUBLIC_KEYS_URL = f"https://cognito-idp.{COGNITO_AWS_REGION}.amazonaws.com/{COGNITO_USER_POOL_ID}/.well-known/jwks.json"
-DB_USER = os.environ.get("DB_USER")
-DB_PASSWORD = os.environ.get("DB_PASSWORD")
-DB_NAME = os.environ.get("DB_NAME")
-DB_HOST = os.environ.get("DB_HOST")
-DB_PORT = os.environ.get("DB_PORT")
+DB_USER = env("DB_USER")
+DB_PASSWORD = env("DB_PASSWORD")
+DB_NAME = env("DB_NAME")
+DB_HOST = env("DB_HOST")
+DB_PORT = env("DB_PORT")
+
+# # # ############# Uncomment for production ##############
 """
 SECRET_KEY = get_secret("SECRET_KEY")
 COGNITO_DOMAIN = get_secret("COGNITO_DOMAIN")
@@ -97,6 +81,7 @@ DB_PASSWORD = get_secret("DB_PASSWORD")
 DB_NAME = get_secret("DB_NAME")
 DB_HOST = get_secret("DB_HOST")
 DB_PORT = get_secret("DB_PORT")
+
 # ##########################################################
 
 # In the future, add this as travis variables to protect URL.
