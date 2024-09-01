@@ -1,4 +1,7 @@
 python3 pip install --upgrade pip setuptools
+sudo apt install libsqlite3-dev
+pyenv install 3.9
+
 echo "Building project packages..."
 cd taxiapp
 python3 -m pip install -r requirements.txt
