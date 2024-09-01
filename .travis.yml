@@ -22,9 +22,8 @@ deploy:
   env: taxiapp-dev
   bucket_name: elasticbeanstalk-us-east-1-761018855731
   on:
-    repo: Software-Engineering
+    repo: devmcdonald/Software-Engineering
     branch:
       - master
-      - develop
   cleanup: 'false'
 
