@@ -77,7 +77,8 @@ COGNITO_APP_CLIENT_ID = os.environ.get("COGNITO_APP_CLIENT_ID")
 COGNITO_AWS_REGION = os.environ.get("COGNITO_AWS_REGION")
 GOOGLE_MAPS_API_KEY = os.environ.get("GOOGLE_MAPS_API_KEY")
 COGNITO_PUBLIC_KEYS_URL = f"https://cognito-idp.{COGNITO_AWS_REGION}.amazonaws.com/{COGNITO_USER_POOL_ID}/.well-known/jwks.json"
-
+POSTGRES_USER = os.environ.get("POSTGRES_USER")
+POSTGRES_PW = os.environ.get("POSTGRES_PW")
 # ##########################################################
 
 # In the future, add this as travis variables to protect URL.
@@ -152,8 +153,12 @@ WSGI_APPLICATION = "taxiapp.wsgi.app"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
+        "NAME": 'taxidatabase',
+        'USER': POSTGRES_USER,
+        'PASSWORD': POSTGRES_PW,
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
