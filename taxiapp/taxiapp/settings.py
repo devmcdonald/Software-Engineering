@@ -69,7 +69,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # LYFT_API_KEY = env("LYFT_API_KEY")
 
 # # # #############Uncomment for travis deployment##############
-SECRET_KEY = os.environ.get("SECRET_KEY") if "SECRET_KEY" in os.environ["SECRET_KEY"] else config("SECRET_KEY")
+"""
+SECRET_KEY = os.environ.get("SECRET_KEY")
 COGNITO_DOMAIN = os.environ.get("COGNITO_DOMAIN")
 COGNITO_APP_CLIENT_SECRET = os.environ.get("COGNITO_APP_CLIENT_SECRET")
 COGNITO_USER_POOL_ID = os.environ.get("COGNITO_USER_POOL_ID")
@@ -82,6 +83,20 @@ DB_PASSWORD = os.environ.get("DB_PASSWORD")
 DB_NAME = os.environ.get("DB_NAME")
 DB_HOST = os.environ.get("DB_HOST")
 DB_PORT = os.environ.get("DB_PORT")
+"""
+SECRET_KEY = get_secret("SECRET_KEY")
+COGNITO_DOMAIN = get_secret("COGNITO_DOMAIN")
+COGNITO_APP_CLIENT_SECRET = get_secret("COGNITO_APP_CLIENT_SECRET")
+COGNITO_USER_POOL_ID = get_secret("COGNITO_USER_POOL_ID")
+COGNITO_APP_CLIENT_ID = get_secret("COGNITO_APP_CLIENT_ID")
+COGNITO_AWS_REGION = get_secret("COGNITO_AWS_REGION")
+GOOGLE_MAPS_API_KEY = get_secret("GOOGLE_MAPS_API_KEY")
+COGNITO_PUBLIC_KEYS_URL = f"https://cognito-idp.{COGNITO_AWS_REGION}.amazonaws.com/{COGNITO_USER_POOL_ID}/.well-known/jwks.json"
+DB_USER = get_secret("DB_USER")
+DB_PASSWORD = get_secret("DB_PASSWORD")
+DB_NAME = get_secret("DB_NAME")
+DB_HOST = get_secret("DB_HOST")
+DB_PORT = get_secret("DB_PORT")
 # ##########################################################
 
 # In the future, add this as travis variables to protect URL.
