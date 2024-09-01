@@ -34,7 +34,7 @@ def get_secret(name):
 SECRET_KEY = get_secret("SECRET_KEY")
 COGNITO_DOMAIN = get_secret("COGNITO_DOMAIN")
 COGNITO_APP_CLIENT_SECRET = get_secret("COGNITO_APP_CLIENT_SECRET")
-COGNITO_USER_POOL_ID = "us-east-1_xjtJDp8bd"
+COGNITO_USER_POOL_ID = "us-east-1_gz0QNUxgd"
 os.environ[COGNITO_USER_POOL_ID] = COGNITO_USER_POOL_ID
 COGNITO_APP_CLIENT_ID = get_secret("COGNITO_APP_CLIENT_ID")
 COGNITO_AWS_REGION = get_secret("COGNITO_AWS_REGION")
@@ -78,7 +78,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ##########################################################
 
 # In the future, add this as travis variables to protect URL.
-AWS_STORAGE_BUCKET_NAME = "taxiapp-static-bucket"
+AWS_STORAGE_BUCKET_NAME = "taxi-s3bucket"
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 STATIC_LOCATION = "static"  # I don't know if we need this
 STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
@@ -87,7 +87,7 @@ STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1", "taxiapp2.us-east-1.elasticbeanstalk.com"]
+ALLOWED_HOSTS = ["127.0.0.1", "taxiapp-dev.us-east-1.elasticbeanstalk.com"]
 
 
 # Application definition
