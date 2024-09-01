@@ -1,4 +1,10 @@
 {
+    "build": {
+        "env": {
+          "PYTHON_VERSION": "3.9"
+        },
+        "prebuild": "pip install --upgrade pip setuptools"
+      },
     "version": 2,
     "builds": [
         {
