@@ -20,12 +20,11 @@
     "routes":[
         {
             "src": "/static/(.*)",
-            "dest": "/staticfiles_build/static/$1"
+            "dest": "/static/$1"
         },
         {
             "src": "/(.*)",
             "dest": "taxiapp/wsgi.py"
         }
-    ],
-    "outputDirectory": "staticfiles_build"
+    ]
 }
