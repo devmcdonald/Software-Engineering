@@ -37,4 +37,3 @@ urlpatterns = [
     path("tools/", include("tools.urls")),
     path("user/", include("user.urls")),
 ]
-
