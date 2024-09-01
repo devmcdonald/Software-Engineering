@@ -6,10 +6,7 @@ import botocore.session
 import boto3
 from botocore.exceptions import ClientError
 import json
-from decouple import config 
-from dotenv import load_dotenv
 
-load_dotenv()
 
 def get_secret(name):
     secret_name = "taxiapp_secrets"
@@ -34,77 +31,63 @@ def get_secret(name):
     return api_key
 
 
-# SECRET_KEY = get_secret("SECRET_KEY")
-# COGNITO_DOMAIN = get_secret("COGNITO_DOMAIN")
-# COGNITO_APP_CLIENT_SECRET = get_secret("COGNITO_APP_CLIENT_SECRET")
-# COGNITO_USER_POOL_ID = "us-east-1_xjtJDp8bd"
-# os.environ[COGNITO_USER_POOL_ID] = COGNITO_USER_POOL_ID
-# COGNITO_APP_CLIENT_ID = get_secret("COGNITO_APP_CLIENT_ID")
-# COGNITO_AWS_REGION = get_secret("COGNITO_AWS_REGION")
-# COGNITO_PUBLIC_KEYS_URL = f"https://cognito-idp.{COGNITO_AWS_REGION}.amazonaws.com/{COGNITO_USER_POOL_ID}/.well-known/jwks.json"
-# os.environ[COGNITO_PUBLIC_KEYS_URL] = COGNITO_PUBLIC_KEYS_URL
-# GOOGLE_MAPS_API_KEY = get_secret("GOOGLE_MAPS_API_KEY")
+SECRET_KEY = get_secret("SECRET_KEY")
+COGNITO_DOMAIN = get_secret("COGNITO_DOMAIN")
+COGNITO_APP_CLIENT_SECRET = get_secret("COGNITO_APP_CLIENT_SECRET")
+COGNITO_USER_POOL_ID = "us-east-1_xjtJDp8bd"
+os.environ[COGNITO_USER_POOL_ID] = COGNITO_USER_POOL_ID
+COGNITO_APP_CLIENT_ID = get_secret("COGNITO_APP_CLIENT_ID")
+COGNITO_AWS_REGION = get_secret("COGNITO_AWS_REGION")
+COGNITO_PUBLIC_KEYS_URL = f"https://cognito-idp.{COGNITO_AWS_REGION}.amazonaws.com/{COGNITO_USER_POOL_ID}/.well-known/jwks.json"
+os.environ[COGNITO_PUBLIC_KEYS_URL] = COGNITO_PUBLIC_KEYS_URL
+GOOGLE_MAPS_API_KEY = get_secret("GOOGLE_MAPS_API_KEY")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-"""
-# ########## Uncomment for local development, add vercel.env local file###############
-env = environ.Env()
-environ.Env.read_env(env_file="vercel.env")
-SECRET_KEY = env("SECRET_KEY")
-COGNITO_DOMAIN = env("COGNITO_DOMAIN")
-COGNITO_APP_CLIENT_SECRET = env("COGNITO_APP_CLIENT_SECRET")
-COGNITO_USER_POOL_ID = env("COGNITO_USER_POOL_ID")
-COGNITO_APP_CLIENT_ID = env("COGNITO_APP_CLIENT_ID")
-COGNITO_AWS_REGION = env("COGNITO_AWS_REGION")
-GOOGLE_MAPS_API_KEY = env("GOOGLE_MAPS_API_KEY")
-COGNITO_PUBLIC_KEYS_URL = f"https://cognito-idp.{COGNITO_AWS_REGION}.amazonaws.com/{COGNITO_USER_POOL_ID}/.well-known/jwks.json"
-DB_USER = env("DB_USER")
-DB_PASSWORD = env("DB_PASSWORD")
-DB_NAME = env("DB_NAME")
-DB_HOST = env("DB_HOST")
-DB_PORT = env("DB_PORT")
 
-# # # ############# Uncomment for production ##############
-"""
-SECRET_KEY = get_secret("SECRET_KEY")
-COGNITO_DOMAIN = get_secret("COGNITO_DOMAIN")
-COGNITO_APP_CLIENT_SECRET = get_secret("COGNITO_APP_CLIENT_SECRET")
-COGNITO_USER_POOL_ID = get_secret("COGNITO_USER_POOL_ID")
-COGNITO_APP_CLIENT_ID = get_secret("COGNITO_APP_CLIENT_ID")
-COGNITO_AWS_REGION = get_secret("COGNITO_AWS_REGION")
-GOOGLE_MAPS_API_KEY = get_secret("GOOGLE_MAPS_API_KEY")
-COGNITO_PUBLIC_KEYS_URL = f"https://cognito-idp.{COGNITO_AWS_REGION}.amazonaws.com/{COGNITO_USER_POOL_ID}/.well-known/jwks.json"
-DB_USER = get_secret("DB_USER")
-DB_PASSWORD = get_secret("DB_PASSWORD")
-DB_NAME = get_secret("DB_NAME")
-DB_HOST = get_secret("DB_HOST")
-DB_PORT = get_secret("DB_PORT")
+# ##########Uncomment for local development, add secrets.env local file###############
+# env = environ.Env()
+# environ.Env.read_env(env_file="secrets.env")
+# SECRET_KEY = env("SECRET_KEY")
+
+
+# # SECURITY WARNING: keep the secret key used in production secret!
+# COGNITO_DOMAIN = env("COGNITO_DOMAIN")
+# COGNITO_APP_CLIENT_SECRET = env("COGNITO_APP_CLIENT_SECRET")
+# COGNITO_USER_POOL_ID = env("COGNITO_USER_POOL_ID")
+# COGNITO_APP_CLIENT_ID = env("COGNITO_APP_CLIENT_ID")
+# COGNITO_AWS_REGION = env("COGNITO_AWS_REGION")
+# GOOGLE_MAPS_API_KEY = env("GOOGLE_MAPS_API_KEY")
+
+# KEEPING THIS?
+# UBER_CLIENT_ID = env("UBER_CLIENT_ID")
+# UBER_CLIENT_SECRET = env("UBER_CLIENT_SECRET")
+# LYFT_API_KEY = env("LYFT_API_KEY")
+
+# # # #############Uncomment for travis deployment##############
+# SECRET_KEY = os.environ.get("SECRET_KEY")
+# COGNITO_DOMAIN = os.environ.get("COGNITO_DOMAIN")
+# COGNITO_APP_CLIENT_SECRET = os.environ.get("COGNITO_APP_CLIENT_SECRET")
+# OGNITO_USER_POOL_ID = os.environ.get("COGNITO_USER_POOL_ID")
+# COGNITO_APP_CLIENT_ID = os.environ.get("COGNITO_APP_CLIENT_ID")
+# COGNITO_AWS_REGION = os.environ.get("COGNITO_AWS_REGION")
+# GOOGLE_MAPS_API_KEY = os.environ.get("GOOGLE_MAPS_API_KEY")
+# COGNITO_PUBLIC_KEYS_URL = f"https://cognito-idp.{COGNITO_AWS_REGION}.amazonaws.com/{COGNITO_USER_POOL_ID}/.well-known/jwks.json"
 
 # ##########################################################
 
 # In the future, add this as travis variables to protect URL.
-AWS_STORAGE_BUCKET_NAME = "elasticbeanstalk-us-east-1-761018855731"
+AWS_STORAGE_BUCKET_NAME = "taxiapp-static-bucket"
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 STATIC_LOCATION = "static"  # I don't know if we need this
 STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
 STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-AWS_REGION = os.environ.get("AWS_REGION")
-
-s3_client = boto3.client(
-    's3',
-    aws_access_key_id=AWS_ACCESS_KEY_ID,
-    aws_secret_access_key=AWS_SECRET_ACCESS_KEY,
-    region_name=COGNITO_AWS_REGION
-)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1", "taxiapp-dev.us-east-1.elasticbeanstalk.com", ".vercel.app", '.now.sh']
+ALLOWED_HOSTS = ["127.0.0.1", "taxiapp2.us-east-1.elasticbeanstalk.com"]
 
 
 # Application definition
@@ -158,7 +141,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "taxiapp.wsgi.app"
+WSGI_APPLICATION = "taxiapp.wsgi.application"
 
 
 # Database
@@ -166,12 +149,8 @@ WSGI_APPLICATION = "taxiapp.wsgi.app"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": DB_NAME,
-        'USER': DB_USER,
-        'PASSWORD': DB_PASSWORD,
-        'HOST': DB_HOST,
-        'PORT': DB_PORT,
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
     }
 }
 
@@ -212,8 +191,11 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
