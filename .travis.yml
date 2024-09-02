@@ -8,7 +8,7 @@ install:
   - cd taxiapp
   - python3 -m pip install --upgrade pip
   - pip install -r requirements.txt
-  - pip install --upgrade numpy scikit-learn
+
 before_script:
   - python manage.py migrate
   - python manage.py collectstatic --noinput
