@@ -32,7 +32,7 @@ def get_secret(name):
     return api_key
 
 
-SECRET_KEY = os.environ.get("SECRET_KEY") if "SECRET_KEY" in os.environ["SECRET_KEY"] else SECRET_KEY=get_random_secret_key()
+SECRET_KEY = os.environ.get("SECRET_KEY", get_random_secret_key())
 COGNITO_DOMAIN = get_secret("COGNITO_DOMAIN")
 COGNITO_APP_CLIENT_SECRET = get_secret("COGNITO_APP_CLIENT_SECRET")
 COGNITO_USER_POOL_ID = "us-east-1_gz0QNUxgd"
