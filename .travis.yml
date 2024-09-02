@@ -25,7 +25,7 @@ deploy:
   region: us-east-1
   app: taxi2
   env: taxi2-env
-  bucket_name: taxi-s3bucket
+  bucket_name: elasticbeanstalk-us-east-1-761018855731
   on:
     repo: devmcdonald/Software-Engineering
     branch:

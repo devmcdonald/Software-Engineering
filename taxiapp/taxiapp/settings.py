@@ -78,7 +78,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # ##########################################################
 
 # In the future, add this as travis variables to protect URL.
-AWS_STORAGE_BUCKET_NAME = "taxi-s3bucket"
+AWS_STORAGE_BUCKET_NAME = "elasticbeanstalk-us-east-1-761018855731"
 AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
 STATIC_LOCATION = "static"  # I don't know if we need this
 STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
