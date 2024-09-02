@@ -97,7 +97,6 @@ AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
 ]
 
-
 INSTALLED_APPS = [
     "taxiapp",
     "forum",
