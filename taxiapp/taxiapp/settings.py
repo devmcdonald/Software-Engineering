@@ -29,6 +29,7 @@ def get_secret(name):
     secret_dict = json.loads(secret)
     api_key = secret_dict.get(name)
     os.environ[name] = api_key
+    print("Successfully extracted ", name)
     return api_key
 
 
