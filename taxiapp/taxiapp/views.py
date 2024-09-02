@@ -162,10 +162,6 @@ def get_secret_hash(username, client_id, client_secret):
 
 def home_view(request):
     google_maps_api_key = os.environ.get("GOOGLE_MAPS_API_KEY")
-    if google_maps_api_key:
-        print("Home view google maps api key found")
-    else:
-        print("No google maps key found for home view")
     latest_posts = Post.objects.all().order_by("-created_at")[:3]
     context = {
         "google_maps_api_key": google_maps_api_key,
