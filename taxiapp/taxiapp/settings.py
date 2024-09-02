@@ -46,7 +46,6 @@ GOOGLE_MAPS_API_KEY = get_secret("GOOGLE_MAPS_API_KEY")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # ##########Uncomment for local development, add secrets.env local file###############
 # env = environ.Env()
 # environ.Env.read_env(env_file="secrets.env")
