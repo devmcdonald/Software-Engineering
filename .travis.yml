@@ -10,6 +10,7 @@ install:
   - pip install -r requirements.txt
 before_script:
   - python manage.py migrate
+  - python manage.py collectstatic --noinput
 script:
   - flake8 .
   - coverage run --source=taxiapp manage.py test
@@ -24,7 +25,7 @@ deploy:
   region: us-east-1
   app: taxi2
   env: taxi2-env
-  bucket_name: elasticbeanstalk-us-east-1-761018855731
+  bucket_name: taxi-s3bucket
   on:
     repo: devmcdonald/Software-Engineering
     branch:
