@@ -1,6 +1,10 @@
 language: python
 python:
   - "3.9"
+
+env:
+  global:
+    - SECRET_KEY = $SECRET_KEY
 install:
   - cd taxiapp
   - python3 -m pip install --upgrade pip
