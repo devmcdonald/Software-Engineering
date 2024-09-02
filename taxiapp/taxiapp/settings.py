@@ -87,7 +87,7 @@ STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["127.0.0.1", "taxiapp-dev.us-east-1.elasticbeanstalk.com", "172.31.86.58", '54.208.232.175']
+ALLOWED_HOSTS = ["127.0.0.1", "taxicompare.us-east-1.elasticbeanstalk.com", "172.31.86.58", '54.208.232.175']
 
 # Application definition
 
