@@ -83,7 +83,6 @@ STATIC_LOCATION = "static"  # I don't know if we need this
 STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
 STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
 
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
