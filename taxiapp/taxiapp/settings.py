@@ -30,6 +30,8 @@ def get_secret(name):
     api_key = secret_dict.get(name)
     os.environ[name] = api_key
     print("Successfully extracted ", name)
+    if name == 'COGNITO_DOMAIN':
+        print(name, api_key)
     return api_key
 
 
