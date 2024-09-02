@@ -90,7 +90,6 @@ DEBUG = False
 
 ALLOWED_HOSTS = ["127.0.0.1", "taxiapp-dev.us-east-1.elasticbeanstalk.com", '172.31.86.58', '54.208.232.175']
 
-
 # Application definition
 
 AUTHENTICATION_BACKENDS = [
