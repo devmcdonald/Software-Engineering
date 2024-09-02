@@ -36,15 +36,21 @@ def get_secret(name):
 
 
 SECRET_KEY = os.environ.get("SECRET_KEY", get_random_secret_key())
+os.environ["SECRET_KEY"] = SECRET_KEY
 COGNITO_DOMAIN = get_secret("COGNITO_DOMAIN")
+os.environ["COGNITO_DOMAIN"] = COGNITO_DOMAIN
 COGNITO_APP_CLIENT_SECRET = get_secret("COGNITO_APP_CLIENT_SECRET")
+os.environ["COGNITO_APP_CLIENT_SECRET"] = COGNITO_APP_CLIENT_SECRET
 COGNITO_USER_POOL_ID = "us-east-1_gz0QNUxgd"
-os.environ[COGNITO_USER_POOL_ID] = COGNITO_USER_POOL_ID
+os.environ["COGNITO_USER_POOL_ID"] = COGNITO_USER_POOL_ID
 COGNITO_APP_CLIENT_ID = get_secret("COGNITO_APP_CLIENT_ID")
+os.environ["COGNITO_APP_CLIENT_ID"] = COGNITO_APP_CLIENT_ID
 COGNITO_AWS_REGION = get_secret("COGNITO_AWS_REGION")
+os.environ["COGNITO_AWS_REGION"] = COGNITO_AWS_REGION
 COGNITO_PUBLIC_KEYS_URL = f"https://cognito-idp.{COGNITO_AWS_REGION}.amazonaws.com/{COGNITO_USER_POOL_ID}/.well-known/jwks.json"
-os.environ[COGNITO_PUBLIC_KEYS_URL] = COGNITO_PUBLIC_KEYS_URL
+os.environ["COGNITO_PUBLIC_KEYS_URL"] = COGNITO_PUBLIC_KEYS_URL
 GOOGLE_MAPS_API_KEY = get_secret("GOOGLE_MAPS_API_KEY")
+os.environ["GOOGLE_MAPS_API_KEY"] = GOOGLE_MAPS_API_KEY
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
