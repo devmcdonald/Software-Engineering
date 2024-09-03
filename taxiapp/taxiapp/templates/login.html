@@ -1,39 +1,24 @@
 {% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaxiApp Forms</title>
-    <link rel="stylesheet" href="{% static 'css/taxiapp/taxiapp_login.css' %}">
-   
-    <script>
-        function validatePassword() {
-            var password = document.getElementById("password").value;
-            var errorMessage = document.getElementById("error-message");
+{% block title %}Login{% endblock %}
 
-            var regex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/taxiapp/taxiapp_login.css' %}">
+{% endblock %}
 
-            if (!regex.test(password)) {
-                errorMessage.textContent = "Password must be at least 8 characters long, contain at least one number, one special character, one uppercase letter, and one lowercase letter.";
-                return false; // Prevent form submission
-            }
-
-            errorMessage.textContent = ""; // Clear error message
-            return true; 
-        }
-    </script>
-</head>
-
-<body>
-
+{% block content %}
+<div class="container">
+    <h1>Login</h1>
     <form method="post" action="{% url 'login' %}" onsubmit="return validatePassword()">
         {% csrf_token %}
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" id="password" name="password" placeholder="Password" required>
-        <button type="submit">Login</button>
+        <div class="form-group">
+            <input type="text" class="form-control" name="username" placeholder="Username" required>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Login</button>
         {% if messages %}
         <ul class="messages">
             {% for message in messages %}
@@ -45,14 +30,30 @@
 
     <p id="error-message" style="color: red;"></p> <!-- Error message display -->
 
-    <div class="footer-links">
+    <div class="footer-links mt-3">
         <a href="{% url 'reset' %}">Reset Password</a>
         <a href="{% url 'register' %}">Don't have an account? Signup</a>
     </div>
+</div>
+{% endblock %}
 
-    <footer>
-        <p>NYU Tandon School of Engineering</p>
-    </footer>
-</body>
+{% block extra_js %}
+<script>
+    function validatePassword() {
+        var password = document.getElementById("password").value;
+        var errorMessage = document.getElementById("error-message");
 
-</html>
+        var regex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
+        if (!regex.test(password)) {
+            errorMessage.textContent = "Password must be at least 8 characters long, contain at least one number, one special character, one uppercase letter, and one lowercase letter.";
+            return false; // Prevent form submission
+        }
+
+        errorMessage.textContent = ""; // Clear error message
+        return true; 
+    }
+</script>
+{% endblock %}
+
+{% block footer %}{% endblock %} <!-- Remove footer on the login page -->

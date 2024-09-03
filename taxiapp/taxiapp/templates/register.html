@@ -1,69 +1,77 @@
 {% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TaxiApp Forms</title>
-    <link rel="stylesheet" href="{% static 'css/taxiapp/taxiapp_register.css' %}">
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var form = document.querySelector("form");
-            form.onsubmit = function (event) {
-                var password = document.querySelector('input[name="password"]').value;
-                var confirmPassword = document.querySelector('input[name="confirm_password"]').value;
-                var errorMessage = document.querySelector("#error-message");
+{% block title %}Register{% endblock %}
 
-                var passwordRegex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/taxiapp/taxiapp_register.css' %}">
+{% endblock %}
 
-                if (!passwordRegex.test(password)) {
-                    errorMessage.textContent = "Password must be at least 8 characters long and include at least one number, one special character, one uppercase letter, and one lowercase letter.";
-                    event.preventDefault(); // Prevent form submission
-                    return false;
-                }
-
-                if (password !== confirmPassword) {
-                    errorMessage.textContent = "Passwords do not match.";
-                    event.preventDefault(); // Prevent form submission
-                    return false;
-                }
-
-                errorMessage.textContent = ""; // Clear error message
-                return true; // Allow form submission
-            };
-        });
-    </script>
-</head>
-
-<body>
-
+{% block content %}
+<div class="container">
+    <h1>Register</h1>
     <form method="post" action="{% url 'register' %}">
         {% csrf_token %}
-        <input type="text" name="full_name" placeholder="Full Name" required>
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+        <div class="form-group">
+            <input type="text" class="form-control" name="full_name" placeholder="Full Name" required>
+        </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="username" placeholder="Username" required>
+        </div>
+        <div class="form-group">
+            <input type="email" class="form-control" name="email" placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" name="password" placeholder="Password" required>
+        </div>
+        <div class="form-group">
+            <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required>
+        </div>
         <p id="error-message" style="color: red;"></p> <!-- Error message display -->
-        <button type="submit">Register</button>
+        <button type="submit" class="btn btn-primary">Register</button>
         {% if messages %}
-        <ul class="messages">
+        <ul class="messages mt-3">
             {% for message in messages %}
             <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
-                {% endfor %}
+            {% endfor %}
         </ul>
         {% endif %}
     </form>
 
-    <div class="footer-links">
+    <div class="footer-links mt-3">
         <a href="{% url 'login' %}">Already have an account? Login</a>
     </div>
+</div>
+{% endblock %}
 
-    <footer>
-        <p>NYU Tandon School of Engineering</p>
-    </footer>
-</body>
+{% block extra_js %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var form = document.querySelector("form");
+        form.onsubmit = function (event) {
+            var password = document.querySelector('input[name="password"]').value;
+            var confirmPassword = document.querySelector('input[name="confirm_password"]').value;
+            var errorMessage = document.querySelector("#error-message");
 
-</html>
+            var passwordRegex = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+
+            if (!passwordRegex.test(password)) {
+                errorMessage.textContent = "Password must be at least 8 characters long and include at least one number, one special character, one uppercase letter, and one lowercase letter.";
+                event.preventDefault(); // Prevent form submission
+                return false;
+            }
+
+            if (password !== confirmPassword) {
+                errorMessage.textContent = "Passwords do not match.";
+                event.preventDefault(); // Prevent form submission
+                return false;
+            }
+
+            errorMessage.textContent = ""; // Clear error message
+            return true; // Allow form submission
+        };
+    });
+</script>
+{% endblock %}
+
+{% block footer %}{% endblock %} <!-- Remove footer on the register page -->

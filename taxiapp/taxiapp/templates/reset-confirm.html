@@ -1,27 +1,26 @@
 {% extends 'base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Confirm Password Reset</title>
-    <link rel="stylesheet" href="{% static 'css/taxiapp/taxiapp_reset_confirm.css' %}">
-    <script>
-        function validatePasswords() {
-            var newPassword = document.getElementById('new_password').value;
-            var confirmPassword = document.getElementById('confirm_new_password').value;
-            if (newPassword !== confirmPassword) {
-                alert('The passwords do not match. Please try again.');
-                return false;
-            }
-            return true;
-        }
-    </script>
-    
-</head>
-<body>
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/taxiapp/taxiapp_reset_confirm.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function validatePasswords() {
+        var newPassword = document.getElementById('new_password').value;
+        var confirmPassword = document.getElementById('confirm_new_password').value;
+        if (newPassword !== confirmPassword) {
+            alert('The passwords do not match. Please try again.');
+            return false;
+        }
+        return true;
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
     <form method="post" action="{% url 'reset-confirm' %}" onsubmit="return validatePasswords()"> <!-- Update the action URL -->
         {% csrf_token %}
         <div class="form-header">
@@ -30,18 +29,25 @@
         </div>
 
         {% if messages %}
-            {% for message in messages %}
-                <div>{{ message }}</div>
-            {% endfor %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</div>
+                {% endfor %}
+            </div>
         {% endif %}
 
-        <input type="hidden" name="username" value="{{ username }}" required> 
-        <input type="text" name="verification_code" placeholder="Verification Code" required>
-        <input type="password" id="new_password" name="new_password" placeholder="New Password" required>
-        <input type="password" id="confirm_new_password" name="confirm_new_password" placeholder="Confirm New Password" required>
+        <input type="hidden" name="username" value="{{ username }}" required>
+        <div class="form-group">
+            <input type="text" name="verification_code" placeholder="Verification Code" required>
+        </div>
+        <div class="form-group">
+            <input type="password" id="new_password" name="new_password" placeholder="New Password" required>
+        </div>
+        <div class="form-group">
+            <input type="password" id="confirm_new_password" name="confirm_new_password" placeholder="Confirm New Password" required>
+        </div>
         
-        <button type="submit" name="confirm_reset">Confirm Reset</button>
+        <button type="submit" name="confirm_reset" class="btn btn-primary">Confirm Reset</button>
     </form>
-
-</body>
-</html>
+</div>
+{% endblock %}

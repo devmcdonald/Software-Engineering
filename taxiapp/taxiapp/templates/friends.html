@@ -1,37 +1,41 @@
 <h3>Pending Friend Requests</h3>
 <div class="friend-request-list">
-    {% for friend_request in friend_requests %}
-    <div class="friend-request-item">
-        <p><a href="{% url 'public_user' friend_request.from_user.username %}">{{ friend_request.from_user.username }}</a></p>
-        <form method="POST" action="{% url 'accept_friend_request' friend_request.id %}" class="accept-form">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary">Accept</button>
-        </form>
-        <form method="POST" action="{% url 'reject_friend_request' friend_request.id %}" class="reject-form">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary">Reject</button>
-        </form>
-    </div>
-    {% empty %}
-    <p>No pending friend requests.</p>
-    {% endfor %}
+    {% if friend_requests %}
+        {% for friend_request in friend_requests %}
+            <div class="friend-request-item">
+                <p><a href="{% url 'public_user' friend_request.from_user.username %}">{{ friend_request.from_user.username }}</a></p>
+                <form method="POST" action="{% url 'accept_friend_request' friend_request.id %}" class="accept-form">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Accept</button>
+                </form>
+                <form method="POST" action="{% url 'reject_friend_request' friend_request.id %}" class="reject-form">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Reject</button>
+                </form>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No pending friend requests.</p>
+    {% endif %}
 </div>
 
 <h3>Friends</h3>
 <div class="friend-list">
-    {% for friend in friends %}
-    <div class="friend-item">
-        <p><a href="{% url 'public_user' friend.username %}">{{ friend.username }}</a></p>
-        <form method="POST" action="{% url 'unfriend' friend.id %}">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-danger">Remove Friend</button>
-        </form>
-        <form method="POST" action="{% url 'chat' friend.username %}" class="chat-form">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-secondary">chat</button>
-        </form>
-    </div>
-    {% empty %}
-    <p>You have no friends yet.</p>
-    {% endfor %}
+    {% if friends %}
+        {% for friend in friends %}
+            <div class="friend-item">
+                <p><a href="{% url 'public_user' friend.username %}">{{ friend.username }}</a></p>
+                <form method="POST" action="{% url 'unfriend' friend.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">Remove Friend</button>
+                </form>
+                <form method="POST" action="{% url 'chat' friend.username %}" class="chat-form">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-secondary">Chat</button>
+                </form>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>You have no friends yet.</p>
+    {% endif %}
 </div>
