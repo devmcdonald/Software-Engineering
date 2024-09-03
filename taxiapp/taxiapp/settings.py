@@ -37,8 +37,7 @@ def get_secret(name):
 SECRET_KEY = os.environ.get("SECRET_KEY", get_random_secret_key())
 COGNITO_DOMAIN = get_secret("COGNITO_DOMAIN")
 COGNITO_APP_CLIENT_SECRET = get_secret("COGNITO_APP_CLIENT_SECRET")
-COGNITO_USER_POOL_ID = "us-east-1_gz0QNUxgd"
-os.environ["COGNITO_USER_POOL_ID"] = COGNITO_USER_POOL_ID
+COGNITO_USER_POOL_ID = get_secret("COGNITO_USER_POOL_ID")
 COGNITO_APP_CLIENT_ID = get_secret("COGNITO_APP_CLIENT_ID")
 COGNITO_AWS_REGION = get_secret("COGNITO_AWS_REGION")
 COGNITO_PUBLIC_KEYS_URL = f"https://cognito-idp.{COGNITO_AWS_REGION}.amazonaws.com/{COGNITO_USER_POOL_ID}/.well-known/jwks.json"
